@@ -44,7 +44,7 @@ public final class JsonArray extends JsonElement implements List<JsonElement>, R
   }
 
   @Override
-  JsonArray deepCopy() {
+  public JsonArray deepCopy() {
     JsonArray result = new JsonArray();
     for (JsonElement element : elements) {
       result.add(element.deepCopy());

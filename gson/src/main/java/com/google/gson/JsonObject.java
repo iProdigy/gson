@@ -35,7 +35,7 @@ public final class JsonObject extends JsonElement implements Map<String, JsonEle
       new LinkedTreeMap<String, JsonElement>();
 
   @Override
-  JsonObject deepCopy() {
+  public JsonObject deepCopy() {
     JsonObject result = new JsonObject();
     for (Map.Entry<String, JsonElement> entry : members.entrySet()) {
       result.add(entry.getKey(), entry.getValue().deepCopy());

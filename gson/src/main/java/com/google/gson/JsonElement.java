@@ -35,7 +35,7 @@ public abstract class JsonElement {
    * Returns a deep copy of this element. Immutable elements like primitives
    * and nulls are not copied.
    */
-  abstract JsonElement deepCopy();
+  public abstract JsonElement deepCopy();
 
   /**
    * provides check for verifying if this element is an array or not.
