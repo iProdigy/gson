@@ -234,6 +234,22 @@ public final class JsonArray extends JsonElement implements List<JsonElement>, R
     return this.elements.isEmpty();
   }
 
+  public boolean contains(Boolean bool) {
+    return this.contains(new JsonPrimitive(bool));
+  }
+
+  public boolean contains(Character character) {
+    return this.contains(new JsonPrimitive(character));
+  }
+
+  public boolean contains(Number number) {
+    return this.contains(new JsonPrimitive(number));
+  }
+
+  public boolean contains(String string) {
+    return this.contains(new JsonPrimitive(string));
+  }
+
   @Override
   public boolean contains(Object o) {
     return this.elements.contains(o);
