@@ -235,19 +235,19 @@ public final class JsonArray extends JsonElement implements List<JsonElement>, R
   }
 
   public boolean contains(Boolean bool) {
-    return this.contains(new JsonPrimitive(bool));
+    return this.contains(bool == null ? JsonNull.INSTANCE : new JsonPrimitive(bool));
   }
 
   public boolean contains(Character character) {
-    return this.contains(new JsonPrimitive(character));
+    return this.contains(character == null ? JsonNull.INSTANCE : new JsonPrimitive(character));
   }
 
   public boolean contains(Number number) {
-    return this.contains(new JsonPrimitive(number));
+    return this.contains(number == null ? JsonNull.INSTANCE : new JsonPrimitive(number));
   }
 
   public boolean contains(String string) {
-    return this.contains(new JsonPrimitive(string));
+    return this.contains(string == null ? JsonNull.INSTANCE : new JsonPrimitive(string));
   }
 
   @Override
