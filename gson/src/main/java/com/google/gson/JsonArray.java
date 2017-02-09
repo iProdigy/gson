@@ -19,8 +19,11 @@ package com.google.gson;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
+import java.util.RandomAccess;
 
 /**
  * A class representing an array type in Json. An array is a list of {@link JsonElement}s each of
@@ -30,7 +33,7 @@ import java.util.List;
  * @author Inderjeet Singh
  * @author Joel Leitch
  */
-public final class JsonArray extends JsonElement implements Iterable<JsonElement> {
+public final class JsonArray extends JsonElement implements List<JsonElement>, RandomAccess {
   private final List<JsonElement> elements;
 
   /**
@@ -90,11 +93,46 @@ public final class JsonArray extends JsonElement implements Iterable<JsonElement
    *
    * @param element the element that needs to be added to the array.
    */
-  public void add(JsonElement element) {
+  public boolean add(JsonElement element) {
     if (element == null) {
       element = JsonNull.INSTANCE;
     }
-    elements.add(element);
+    return elements.add(element);
+  }
+
+  @Override
+  public boolean remove(Object o) {
+    return this.elements.remove(o);
+  }
+
+  @Override
+  public boolean containsAll(Collection<?> c) {
+    return this.elements.containsAll(c);
+  }
+
+  @Override
+  public boolean addAll(Collection<? extends JsonElement> c) {
+    return this.elements.addAll(c);
+  }
+
+  @Override
+  public boolean addAll(int index, Collection<? extends JsonElement> c) {
+    return this.elements.addAll(index, c);
+  }
+
+  @Override
+  public boolean removeAll(Collection<?> c) {
+    return this.elements.removeAll(c);
+  }
+
+  @Override
+  public boolean retainAll(Collection<?> c) {
+    return this.elements.retainAll(c);
+  }
+
+  @Override
+  public void clear() {
+    this.elements.clear();
   }
 
   /**
@@ -116,6 +154,11 @@ public final class JsonArray extends JsonElement implements Iterable<JsonElement
    */
   public JsonElement set(int index, JsonElement element) {
     return elements.set(index, element);
+  }
+
+  @Override
+  public void add(int index, JsonElement element) {
+    elements.add(index, element);
   }
 
   /**
@@ -152,6 +195,31 @@ public final class JsonArray extends JsonElement implements Iterable<JsonElement
     return elements.contains(element);
   }
 
+  @Override
+  public int indexOf(Object o) {
+    return elements.indexOf(o);
+  }
+
+  @Override
+  public int lastIndexOf(Object o) {
+    return elements.lastIndexOf(o);
+  }
+
+  @Override
+  public ListIterator<JsonElement> listIterator() {
+    return elements.listIterator();
+  }
+
+  @Override
+  public ListIterator<JsonElement> listIterator(int index) {
+    return elements.listIterator(index);
+  }
+
+  @Override
+  public List<JsonElement> subList(int fromIndex, int toIndex) {
+    return elements.subList(fromIndex, toIndex);
+  }
+
   /**
    * Returns the number of elements in the array.
    *
@@ -159,6 +227,16 @@ public final class JsonArray extends JsonElement implements Iterable<JsonElement
    */
   public int size() {
     return elements.size();
+  }
+
+  @Override
+  public boolean isEmpty() {
+    return this.elements.isEmpty();
+  }
+
+  @Override
+  public boolean contains(Object o) {
+    return this.elements.contains(o);
   }
 
   /**
@@ -169,6 +247,16 @@ public final class JsonArray extends JsonElement implements Iterable<JsonElement
    */
   public Iterator<JsonElement> iterator() {
     return elements.iterator();
+  }
+
+  @Override
+  public Object[] toArray() {
+    return this.elements.toArray();
+  }
+
+  @Override
+  public <T> T[] toArray(T[] a) {
+    return this.elements.toArray(a);
   }
 
   /**
